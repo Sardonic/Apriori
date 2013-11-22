@@ -66,6 +66,10 @@
   <ItemGroup>
     <ClCompile Include="apriori.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="node.h" />
+    <ClInclude Include="queue.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
