@@ -67,6 +67,7 @@
     <ClCompile Include="apriori.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="dataset.h" />
     <ClInclude Include="node.h" />
     <ClInclude Include="queue.h" />
   </ItemGroup>
