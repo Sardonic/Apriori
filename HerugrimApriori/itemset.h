@@ -25,6 +25,8 @@
 *    five_itemset.getItem(3, thirdItem) // returned true
 *    cout << thirdItem;
 * 
+*
+* *** DO NOT make an itemset with size < 1 ***
 ********/
 
 #ifndef ITEMSET_H
@@ -43,9 +45,12 @@ public:
 	int  getSize();
 
 private:
-	Item* mItems;
+	Item* mItems; // dynamic array
 	int mSize;
 	int mCurrIndex;
+	bool isFull;
+
+	void sort(); // Only called when itemset is filled
 };
 
 
