@@ -1,5 +1,9 @@
 #include "itemset.h"
 
+/*      Pre:  None
+ *     Post:  Itemset is constructed
+ *  Purpose:  To create the itemset
+ ***************************************************/
 Itemset::Itemset(int size)
 {
 	mSize = size;
@@ -8,11 +12,19 @@ Itemset::Itemset(int size)
 	isFull = false;
 }
 
+/*      Pre:  None
+ *     Post:  Itemset destructor
+ *  Purpose:  Destructor
+ ***************************************************/
 Itemset::~Itemset()
 {
 	delete [] mItems;
 }
 
+/*      Pre:  Itemset is filled
+ *     Post:  The requested item is given to output
+ *  Purpose:  To access data in the itemset
+ ***************************************************/
 bool Itemset::getItem(int index, Item& output)
 {
 	// Check array indices.
@@ -25,6 +37,10 @@ bool Itemset::getItem(int index, Item& output)
 	return true;
 }
 
+/*      Pre:  Itemset is not full
+ *     Post:  Itemset adds a new item to itself
+ *  Purpose:  To give data to the itemset
+ ***************************************************/
 bool Itemset::addItem(Item newItem)
 {
 	if (isFull)
@@ -42,11 +58,19 @@ bool Itemset::addItem(Item newItem)
 	return true;
 }
 
+/*      Pre:  None
+ *     Post:  Returns size
+ *  Purpose:  To get the size of the itemset
+ ***************************************************/
 int Itemset::getSize()
 {
 	return mSize;
 }
 
+/*      Pre:  Itemset is full
+ *     Post:  Itemset is sorted
+ *  Purpose:  To sort the itemset
+ ***************************************************/
 void Itemset::sort()
 {
 	// Bubblesort -- itemsets are very small and likely to be
