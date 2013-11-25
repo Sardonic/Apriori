@@ -20,8 +20,11 @@
     </ClCompile>
     <ClCompile Include="itemset.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-  </ItemGroup>
+    </ClCompile>    <ClCompile Include="dataset.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>    <ClCompile Include="timerSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>  </ItemGroup>
   <ItemGroup>
     <ClInclude Include="queue.h">
       <Filter>Header Files</Filter>
@@ -34,6 +37,7 @@
     </ClInclude>
     <ClInclude Include="itemset.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-  </ItemGroup>
+    </ClInclude>    <ClInclude Include="timerSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>  </ItemGroup>
 </Project>
