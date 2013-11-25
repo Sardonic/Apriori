@@ -4,6 +4,7 @@
 #include <string>
 #include <fstream>
 #include "queue.h"
+#include "itemset.h"
 
 using namespace std;
 
@@ -14,7 +15,7 @@ class Dataset
 		~Dataset();
 
 		bool getSpecifications(string inputFileName);
-		void generateItemSet(int itemSet, float supportThreshold);
+		Queue<Itemset> generateItemSet(int itemSet, float supportThreshold);
 		void populateArray(string fileName);
 	private:
 		int** mDataArray;
