@@ -66,6 +66,8 @@ void ItemsetStub()
 	cout << "Returned " << two_itemset.getItem(1, second_item) << "." << endl;
 	cout << "Second item is " << second_item << endl;
 
+	cout << two_itemset << endl;
+
 	string junk;
 
 	cout << "Test complete. Press enter to continue." << endl;

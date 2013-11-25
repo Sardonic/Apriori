@@ -32,6 +32,8 @@
 #ifndef ITEMSET_H
 #define ITEMSET_H
 
+#include <iostream>
+
 typedef int Item;
 
 class Itemset
@@ -44,6 +46,8 @@ public:
 	bool addItem(Item newItem);
 	int  getSize();
 
+	friend std::ostream& operator<<(std::ostream& os, const Itemset& obj);
+
 private:
 	Item* mItems; // dynamic array
 	int mSize;
@@ -53,5 +57,6 @@ private:
 	void sort(); // Only called when itemset is filled
 };
 
+std::ostream& operator<<(std::ostream& os, const Itemset& obj);
 
 #endif

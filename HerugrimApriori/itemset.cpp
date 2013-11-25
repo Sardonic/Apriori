@@ -96,3 +96,32 @@ void Itemset::sort()
 		}
 	}
 }
+
+// Operator overloads ///////////////
+
+/*      Pre:  Itemset is full
+ *     Post:  Itemset is outputted
+ *  Purpose:  To output the itemset
+ ***************************************************/
+std::ostream& operator<<(std::ostream& os, const Itemset& obj)
+{
+	// If it's not full, it's not set up properly. Don't output.
+	if (!obj.isFull)
+		return os;
+
+	os << "{ ";
+
+	for (int i = 0; i < obj.mSize; i++)
+	{
+		os << obj.mItems[i];
+
+		if (i != obj.mSize - 1)
+		{
+			os << ", ";
+		}
+	}
+
+	os << " }";
+
+	return os;
+}
