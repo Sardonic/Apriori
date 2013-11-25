@@ -18,6 +18,9 @@
     <ClCompile Include="apriori.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="itemset.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="queue.h">
@@ -27,6 +30,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="dataset.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="itemset.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
