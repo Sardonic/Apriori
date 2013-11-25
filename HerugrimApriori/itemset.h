@@ -3,7 +3,8 @@
 * Itemset.h
 *
 *  Itemsets require a given size before they are created. They are
-*  also immutable; they cannot be edited once created. Simply
+*  also immutable; they cannot be edited once created, although they
+*  are not fully created until all the data has been added to them. Simply
 *  create an itemset of the size you need, and add the appropriate
 *  number of items. For example:
 *
@@ -14,7 +15,7 @@
 *    five_itemset.addItem(6);
 *    five_itemset.addItem(9);
 *    
-*  Now the itemset is {2, 8, 13, 6, 9}.
+*  Now the itemset is {2, 6, 8, 9, 13}. It organizes itself when it fills up.
 *  The following line of code will not change the itemset:
 *     five_itemset.addItem(100); // Error -- itemset already full. Returns false.
 *
