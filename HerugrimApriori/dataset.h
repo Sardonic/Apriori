@@ -14,9 +14,15 @@ class Dataset
 		Dataset();
 		~Dataset();
 
+		inline int Dataset::getTransactions(){return mNumTransactions;}
+		inline int Dataset::getTotalItems(){return mNumTotalItems;}
+
+		void allocateArrayMemory();
 		bool getSpecifications(string inputFileName);
 		Queue<Itemset> generateItemSet(int itemSet, float supportThreshold);
 		void populateArray(string fileName);
+		void printArray();
+
 	private:
 		int** mDataArray;
 		int mNumTransactions;

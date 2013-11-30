@@ -1,3 +1,5 @@
+#include <string>
+#include <sstream>
 #include "dataset.h"
 
 //Pre: None
@@ -19,6 +21,22 @@ Dataset::~Dataset()
 	}
 
 	delete [] mDataArray;
+}
+
+//Pre: we have the array specifications figured out
+//Post: array is ready for population
+//Purpose: allocates memory for the array
+//**********************************************************************
+void Dataset::allocateArrayMemory()
+{
+	mDataArray = new int*[mNumTransactions]();
+
+	for(int i = 0; i < mNumTransactions; i++)
+	{
+		mDataArray[i] = new int[mNumTotalItems]();
+	}
+
+
 }
 
 //Pre: inputFileName name has been instantiated;
@@ -49,4 +67,60 @@ bool Dataset::getSpecifications(string inputFileName)
 	}
 
 
+}
+
+//Pre: memory is allocated for the array
+//Post: the array is ready to be analyzed
+//Purpose: populates the array with binary values denoting whether or not an item is in a transaction
+//**********************************************************************
+void Dataset::populateArray(string filename)
+{
+	allocateArrayMemory();
+
+	int currIndex;
+	int i = 0;
+	string currLine;
+	stringstream stringStream;
+
+	ifstream inStream;
+	inStream.open(filename + ".dat");
+
+	if(inStream.good())
+	{
+		getline(inStream, currLine);
+
+		while(!inStream.eof())
+		{			
+			stringStream << currLine;
+
+			while(!stringStream.eof())
+			{
+				stringStream >> currIndex;
+				mDataArray[i][currIndex] = 1;
+			}
+
+			stringStream.clear();
+			i++;
+
+			getline(inStream, currLine);
+		}
+	}
+
+	inStream.close();
+}
+
+//Pre: None
+//Post: None
+//Purpose: prints the current contents of the array
+//**********************************************************************
+void Dataset::printArray()
+{
+	for(int i = 0; i < mNumTransactions; i++)
+	{
+		for(int j = 0; j < mNumTotalItems; j++)
+		{
+			cout << mDataArray[i][j] << " ";
+		}
+		cout << "\n\n";
+	}
 }

@@ -4,10 +4,12 @@
 using namespace std;
 
 void ItemsetStub();
+void DatasetPopulateStub();
 
 int main()
 {
-	ItemsetStub();
+	//ItemsetStub();
+	DatasetPopulateStub();
 
 	/*
 	Dataset mainData = Dataset();
@@ -70,6 +72,29 @@ void ItemsetStub()
 
 	string junk;
 
+	cout << "Test complete. Press enter to continue." << endl;
+	getline(cin, junk);
+}
+
+void DatasetPopulateStub()
+{
+	Dataset tempDataset;
+
+	string fileName;
+	cout << "Enter name of .input (DO NOT INCLUDE .input):\n";
+	getline(cin, fileName);
+
+	while(tempDataset.getSpecifications(fileName) == false)
+	{
+		cout << "~Error: Invalid File Name~\n";
+		cout << "Enter name of .input (DO NOT INCLUDE .input):\n";
+		getline(cin, fileName);
+	}
+
+	tempDataset.populateArray(fileName);
+	tempDataset.printArray();
+
+	string junk;
 	cout << "Test complete. Press enter to continue." << endl;
 	getline(cin, junk);
 }
