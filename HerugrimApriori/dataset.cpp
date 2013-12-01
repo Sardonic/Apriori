@@ -14,7 +14,6 @@ Dataset::Dataset(){}
 //**********************************************************************
 Dataset::~Dataset()
 {
-
 	for(int i = 0; i < mNumTransactions; i++)
 	{
 		delete [] mDataArray[i];
@@ -29,14 +28,12 @@ Dataset::~Dataset()
 //**********************************************************************
 void Dataset::allocateArrayMemory()
 {
-	mDataArray = new int*[mNumTransactions]();
+	mDataArray = new int*[mNumTransactions + 1]();
 
-	for(int i = 0; i < mNumTransactions; i++)
+	for(int i = 0; i <= mNumTransactions; i++)
 	{
-		mDataArray[i] = new int[mNumTotalItems]();
+		mDataArray[i] = new int[mNumTotalItems + 1]();
 	}
-
-
 }
 
 //Pre: inputFileName name has been instantiated;
@@ -96,7 +93,7 @@ void Dataset::populateArray(string filename)
 			while(!stringStream.eof())
 			{
 				stringStream >> currIndex;
-				mDataArray[i][currIndex] = 1;
+				mDataArray[i][currIndex]++;
 			}
 
 			stringStream.clear();
