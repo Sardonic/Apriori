@@ -6,7 +6,7 @@ void ItemsetStub();
 void DatasetPopulateStub();
 void OneItemsetStub();
 
-#define DEBUG_FILENAME "T15N1.00KD1.00K"
+#define DEBUG_FILENAME "T5N1.00KD1.00K"
 
 int main()
 {

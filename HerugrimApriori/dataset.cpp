@@ -52,7 +52,7 @@ void Dataset::generateItemSet(int itemSet, float supportThreshold)
 				itemCount += mDataArray[j][i];
 			}
 
-			if(((float)itemCount / mNumTransactions) >= (supportThreshold * mNumTransactions))
+			if(itemCount >= (supportThreshold * mNumTransactions))
 			{
 				Itemset* currItemset = new Itemset(itemSet);
 				currItemset->addItem(i);
