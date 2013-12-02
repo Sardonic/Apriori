@@ -3,7 +3,7 @@
 ItemsetHolder::~ItemsetHolder(){}
 
 /*      Pre:  We have two ItemsetHolders we would like to compare
- *     Post:  We know which ItemsetHolder contains larger itemsets
+ *     Post:  We know if the left ItemsetHolder is of larger order
  *  Purpose:  To compare ItemsetHolders
  *****************************************************************************/
 bool operator>(ItemsetHolder& rhs, ItemsetHolder& lhs)
@@ -19,12 +19,44 @@ bool operator>(ItemsetHolder& rhs, ItemsetHolder& lhs)
 }
 
 /*      Pre:  We have two ItemsetHolders we would like to compare
- *     Post:  We know which ItemsetHolder contains smaller itemsets
+ *     Post:  We know if the left ItemsetHolder is of smaller order
  *  Purpose:  To compare ItemsetHolders
  *****************************************************************************/
 bool operator<(ItemsetHolder& rhs, ItemsetHolder& lhs)
 {
 	if(rhs.getWhichItemset() < lhs.getWhichItemset())
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+/*      Pre:  We have two ItemsetHolders we would like to compare
+ *     Post:  We know if the left itemset is of larger or equal order
+ *  Purpose:  To compare ItemsetHolders
+ *****************************************************************************/
+bool operator>=(ItemsetHolder& rhs, ItemsetHolder& lhs)
+{
+	if(rhs.getWhichItemset() >= lhs.getWhichItemset())
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+/*      Pre:  We have two ItemsetHolders we would like to compare
+ *     Post:  We know if the left itemset is of smaller or equal order
+ *  Purpose:  To compare ItemsetHolders
+ *****************************************************************************/
+bool operator<=(ItemsetHolder& rhs, ItemsetHolder& lhs)
+{
+	if(rhs.getWhichItemset() <= lhs.getWhichItemset())
 	{
 		return true;
 	}
@@ -67,4 +99,6 @@ std::ostream& operator<<(std::ostream& os, ItemsetHolder& obj)
 	{
 		cout << *(obj.getData(i)) << endl;
 	}
+
+	return os;
 }

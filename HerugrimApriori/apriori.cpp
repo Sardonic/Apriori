@@ -121,7 +121,7 @@ void OneItemsetStub()
 	tempDataset.populateArray(DEBUG_FILENAME);
 	//tempDataset.printArray();
 
-	tempDataset.generateItemSet(1, 0.05);
+	tempDataset.generateItemSet(2, 0);
 
 	string junk;
 	cout << "Test complete. Press enter to continue." << endl;

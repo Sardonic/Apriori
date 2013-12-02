@@ -10,6 +10,7 @@ using namespace std;
 class ItemsetHolder : public LinkedList<Itemset*>
 {
 public:
+	ItemsetHolder(){whichItemset = 1;}
 	ItemsetHolder(int n){whichItemset = n;}
 	~ItemsetHolder();
 
@@ -17,6 +18,8 @@ public:
 
 	friend bool operator>(ItemsetHolder& rhs, ItemsetHolder& lhs);
 	friend bool operator<(ItemsetHolder& rhs, ItemsetHolder& lhs);
+	friend bool operator>=(ItemsetHolder& rhs, ItemsetHolder& lhs);
+	friend bool operator<=(ItemsetHolder& rhs, ItemsetHolder& lhs);
 	friend ostream& operator<<(ostream& os, ItemsetHolder& obj);
 
 private:

@@ -20,15 +20,17 @@ class Dataset
 
 		void allocateArrayMemory();
 		bool getSpecifications(string inputFileName);
-		void generateItemSet(int itemSet, float supportThreshold);
+		void generateItemSet(int itemSet, double supportThreshold);
 		void populateArray(string fileName);
 		void printArray();
 
 	private:
-		LinkedList<ItemsetHolder> mAllItemsets;
+		LinkedList<ItemsetHolder*> mAllItemsets;
 		int** mDataArray;
 		int mNumTransactions;
 		int mNumTotalItems;
+
+		void generateItemsetRecur(int recursionIterator, int itemSet, int loopsLeft, double supportThreshold, int* setArray, ItemsetHolder& holder);
 };
 
 

@@ -36,34 +36,68 @@ void Dataset::allocateArrayMemory()
 	}
 }
 
-void Dataset::generateItemSet(int itemSet, float supportThreshold)
+void Dataset::generateItemSet(int itemSet, double supportThreshold)
 {
 	ItemsetHolder holder(itemSet);
+	int itemCount = 0;
+	int loopsLeft = itemSet;
+	int recursionIterator = 0;
 
-	switch(itemSet)
+	int* setArray = new int[itemSet];
+
+	generateItemsetRecur(recursionIterator, itemSet, loopsLeft, supportThreshold, setArray, holder);
+
+	mAllItemsets.insert(&holder);
+
+	delete []setArray;
+	cout << holder;
+}
+
+void Dataset::generateItemsetRecur(int recursionIterator, int itemSet, int loopsLeft, double supportThreshold, int* setArray, ItemsetHolder& holder)
+{
+	if(loopsLeft > 0)
 	{
-	case 1:
-		for(int i = 0; i <= mNumTotalItems; i++)
+		for(int i = recursionIterator; i <= mNumTotalItems; i++)
 		{
+			setArray[itemSet - loopsLeft] = i;
+
+			generateItemsetRecur(i, itemSet, loopsLeft - 1, supportThreshold, setArray, holder);
+		}
+	}
+	else
+	{
+		for(int i = 0; i < itemSet; i++)
+		{
+			int allItemsCheck = 0;
 			int itemCount = 0;
 
 			for(int j = 0; j < mNumTransactions; j++)
 			{
-				itemCount += mDataArray[j][i];
+				allItemsCheck += mDataArray[j][setArray[i]];
+
+				if(allItemsCheck == itemSet)
+				{
+					itemCount++;
+				}
+
+				allItemsCheck = 0;
 			}
 
 			if(itemCount >= (supportThreshold * mNumTransactions))
 			{
 				Itemset* currItemset = new Itemset(itemSet);
-				currItemset->addItem(i);
+				
+				for(int k = 0; k < itemSet; k++)
+				{
+					currItemset->addItem(setArray[k]);
+				}
 
 				holder.insert(currItemset);
 			}
 		}
 	}
-
-	cout << holder;
 }
+
 
 //Pre: inputFileName name has been instantiated;
 //Post: returns false if file not found, returns true if file is found
