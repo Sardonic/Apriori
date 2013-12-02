@@ -34,28 +34,32 @@
 #define ITEMSET_H
 
 #include <iostream>
+#include "linkedList.h"
 
 typedef int Item;
 
 class Itemset
 {
 public:
-	Itemset(int size = 1);
+	Itemset();
+	Itemset(int size);
 	~Itemset();
 
 	bool getItem(int index, Item& output);
 	bool addItem(Item newItem);
 	int  getSize();
 
-	friend std::ostream& operator<<(std::ostream& os, const Itemset& obj);
+	friend std::ostream& operator<<(std::ostream& os, Itemset& obj);
+
+	friend bool operator<(Itemset& lhs, Itemset& rhs);
+	friend bool operator>(Itemset& lhs, Itemset& rhs);
+	friend bool operator<=(Itemset& lhs, Itemset& rhs);
+	friend bool operator>=(Itemset& lhs, Itemset& rhs);
 
 private:
-	Item* mItems; // dynamic array
+	LinkedList<Item> mItems;
 	int mSize;
-	int mCurrIndex;
 	bool isFull;
-
-	void sort(); // Only called when itemset is filled
 };
 
 std::ostream& operator<<(std::ostream& os, const Itemset& obj);

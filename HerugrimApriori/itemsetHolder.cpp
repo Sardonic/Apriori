@@ -33,3 +33,26 @@ bool operator<(ItemsetHolder& rhs, ItemsetHolder& lhs)
 		return false;
 	}
 }
+
+template <class T>
+std::ostream& operator<<(std::ostream& os, ItemsetHolder& obj)
+{
+	Node<T>* tmp;
+
+	if (obj.mHead == NULL)
+	{
+		os << "The list is empty\n";
+		return os;
+	}
+
+	tmp = obj.mHead;
+	while (tmp != NULL)
+	{
+		os << tmp->mData << " ";
+		tmp = tmp->mNext;
+	}
+
+	os << endl;
+
+	return os;
+}

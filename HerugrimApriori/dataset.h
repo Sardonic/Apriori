@@ -25,8 +25,8 @@ class Dataset
 		void printArray();
 
 	private:
-		int** mDataArray;
 		LinkedList<ItemsetHolder> mAllItemsets;
+		int** mDataArray;
 		int mNumTransactions;
 		int mNumTotalItems;
 };

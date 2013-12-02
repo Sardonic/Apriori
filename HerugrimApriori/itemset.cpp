@@ -2,13 +2,21 @@
 
 /*      Pre:  None
  *     Post:  Itemset is constructed
+ *  Purpose:  To create an itemset with the default size of 1
+ ***************************************************/
+Itemset::Itemset()
+{
+	mSize = 1;
+	isFull = false;
+}
+
+/*      Pre:  None
+ *     Post:  Itemset is constructed
  *  Purpose:  To create the itemset
  ***************************************************/
 Itemset::Itemset(int size)
 {
 	mSize = size;
-	mCurrIndex = 0;
-	mItems = new Item[size];
 	isFull = false;
 }
 
@@ -18,7 +26,7 @@ Itemset::Itemset(int size)
  ***************************************************/
 Itemset::~Itemset()
 {
-	delete [] mItems;
+
 }
 
 /*      Pre:  Itemset is filled
@@ -33,7 +41,7 @@ bool Itemset::getItem(int index, Item& output)
 	if ((index < 0 || index >= mSize) || !isFull)
 		return false;
 
-	output = mItems[index];
+	output = mItems.getData(index);
 	return true;
 }
 
@@ -46,13 +54,11 @@ bool Itemset::addItem(Item newItem)
 	if (isFull)
 		return false; // Itemset is full -- do not continue.
 
-	mItems[mCurrIndex] = newItem;
-	mCurrIndex++;
+	mItems.insert(newItem);
 
-	if (mCurrIndex == mSize)
+	if (mItems.getCount() == mSize)
 	{
 		isFull = true;
-		sort();
 	}
 
 	return true;
@@ -67,43 +73,13 @@ int Itemset::getSize()
 	return mSize;
 }
 
-/*      Pre:  Itemset is full
- *     Post:  Itemset is sorted
- *  Purpose:  To sort the itemset
- ***************************************************/
-void Itemset::sort()
-{
-	// Bubblesort -- itemsets are very small and likely to be
-	// sorted or almost sorted before this function is called.
-
-	bool swapped = true;
-
-	while (swapped)
-	{
-		swapped = false;
-
-		for (int i = 0; i < mSize - 1; i++)
-		{
-			if (mItems[i + 1] < mItems[i])
-			{
-				// Swap the two items
-				Item temp = mItems[i];
-				mItems[i] = mItems[i + 1];
-				mItems[i + 1] = temp;
-
-				swapped = true;
-			}
-		}
-	}
-}
-
 // Operator overloads ///////////////
 
 /*      Pre:  Itemset is full
  *     Post:  Itemset is outputted
  *  Purpose:  To output the itemset
  ***************************************************/
-std::ostream& operator<<(std::ostream& os, const Itemset& obj)
+std::ostream& operator<<(std::ostream& os, Itemset& obj)
 {
 	// If it's not full, it's not set up properly. Don't output.
 	if (!obj.isFull)
@@ -113,7 +89,7 @@ std::ostream& operator<<(std::ostream& os, const Itemset& obj)
 
 	for (int i = 0; i < obj.mSize; i++)
 	{
-		os << obj.mItems[i];
+		os << obj.mItems.getData(i);
 
 		if (i != obj.mSize - 1)
 		{
@@ -125,3 +101,8 @@ std::ostream& operator<<(std::ostream& os, const Itemset& obj)
 
 	return os;
 }
+
+bool operator<(Itemset& lhs, Itemset& rhs){return true;}
+bool operator>(Itemset& lhs, Itemset& rhs){return true;}
+bool operator<=(Itemset& lhs, Itemset& rhs){return true;}
+bool operator>=(Itemset& lhs, Itemset& rhs){return true;}

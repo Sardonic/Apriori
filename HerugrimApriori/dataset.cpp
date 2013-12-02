@@ -42,31 +42,27 @@ void Dataset::generateItemSet(int itemSet, float supportThreshold)
 
 	int itemCount = 0;
 
-	switch (itemSet)
+	switch(itemSet)
 	{
 	case 1:
 		for(int i = 0; i <= mNumTotalItems; i++)
 		{
 			for(int j = 0; j < mNumTransactions; j++)
 			{
-				for( int k = 0; k <= mNumTotalItems; k++)
-				{
-					if(mDataArray[j][k] == i)
-					{
-						itemCount++;
-					}
-				}
+				itemCount += mDataArray[j][i];
 			}
 
 			if(itemCount >= supportThreshold)
 			{
-				Itemset currItemset(itemSet);
-				currItemset.addItem(i);
+				Itemset* currItemset = new Itemset(itemSet);
+				currItemset->addItem(i);
 
-				holder.enqueue(currItemset);
+				holder.insert(currItemset);
 			}
 		}
 	}
+
+	holder.display();
 }
 
 //Pre: inputFileName name has been instantiated;

@@ -1,13 +1,13 @@
 #ifndef ITEMSETHOLDER_H
 #define ITEMSETHOLDER_H
 
-#include "queue.h"
+#include "LinkedList.h"
 #include "itemset.h"
 
 using namespace std;
 
 
-class ItemsetHolder : public Queue<Itemset>
+class ItemsetHolder : public LinkedList<Itemset*>
 {
 public:
 	ItemsetHolder(int n){whichItemset = n;}
@@ -17,6 +17,7 @@ public:
 
 	friend bool operator>(ItemsetHolder& rhs, ItemsetHolder& lhs);
 	friend bool operator<(ItemsetHolder& rhs, ItemsetHolder& lhs);
+	friend ostream& operator<<(std::ostream& os, ItemsetHolder& obj);
 
 private:
 	int whichItemset;
