@@ -65,9 +65,15 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="apriori.cpp" />
-    <ClCompile Include="itemset.cpp" />    <ClCompile Include="dataset.cpp" />    <ClCompile Include="timerSystem.cpp" />  </ItemGroup>
+    <ClCompile Include="itemset.cpp" />
+    <ClCompile Include="dataset.cpp" />
+    <ClCompile Include="itemsetHolder.cpp" />
+    <ClCompile Include="timerSystem.cpp" />
+  </ItemGroup>
   <ItemGroup>
     <ClInclude Include="dataset.h" />
+    <ClInclude Include="E:\HerugrimApriori\linkedList.h" />
+    <ClInclude Include="itemsetHolder.h" />
     <ClInclude Include="itemset.h" />
     <ClInclude Include="node.h" />
     <ClInclude Include="queue.h" />

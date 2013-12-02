@@ -36,6 +36,39 @@ void Dataset::allocateArrayMemory()
 	}
 }
 
+void Dataset::generateItemSet(int itemSet, float supportThreshold)
+{
+	ItemsetHolder holder(itemSet);
+
+	int itemCount = 0;
+
+	switch (itemSet)
+	{
+	case 1:
+		for(int i = 0; i <= mNumTotalItems; i++)
+		{
+			for(int j = 0; j < mNumTransactions; j++)
+			{
+				for( int k = 0; k <= mNumTotalItems; k++)
+				{
+					if(mDataArray[j][k] == i)
+					{
+						itemCount++;
+					}
+				}
+			}
+
+			if(itemCount >= supportThreshold)
+			{
+				Itemset currItemset(itemSet);
+				currItemset.addItem(i);
+
+				holder.enqueue(currItemset);
+			}
+		}
+	}
+}
+
 //Pre: inputFileName name has been instantiated;
 //Post: returns false if file not found, returns true if file is found
 //Purpose: retrives the total number of distinct items and transactions

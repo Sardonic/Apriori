@@ -1,6 +1,5 @@
 #include <iostream>
 #include "dataset.h"
-#include "itemset.h"
 using namespace std;
 
 void ItemsetStub();

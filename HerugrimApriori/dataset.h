@@ -3,8 +3,9 @@
 
 #include <string>
 #include <fstream>
-#include "queue.h"
+#include "itemsetHolder.h"
 #include "itemset.h"
+#include "linkedList.h"
 
 using namespace std;
 
@@ -19,12 +20,13 @@ class Dataset
 
 		void allocateArrayMemory();
 		bool getSpecifications(string inputFileName);
-		Queue<Itemset> generateItemSet(int itemSet, float supportThreshold);
+		void generateItemSet(int itemSet, float supportThreshold);
 		void populateArray(string fileName);
 		void printArray();
 
 	private:
 		int** mDataArray;
+		LinkedList<ItemsetHolder> mAllItemsets;
 		int mNumTransactions;
 		int mNumTotalItems;
 };

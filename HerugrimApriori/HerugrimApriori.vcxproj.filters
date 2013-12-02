@@ -20,11 +20,17 @@
     </ClCompile>
     <ClCompile Include="itemset.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>    <ClCompile Include="dataset.cpp">
+    </ClCompile>
+    <ClCompile Include="dataset.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>    <ClCompile Include="timerSystem.cpp">
+    </ClCompile>
+    <ClCompile Include="timerSystem.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>  </ItemGroup>
+    </ClCompile>
+    <ClCompile Include="itemsetHolder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
   <ItemGroup>
     <ClInclude Include="queue.h">
       <Filter>Header Files</Filter>
@@ -37,7 +43,15 @@
     </ClInclude>
     <ClInclude Include="itemset.h">
       <Filter>Header Files</Filter>
-    </ClInclude>    <ClInclude Include="timerSystem.h">
+    </ClInclude>
+    <ClInclude Include="timerSystem.h">
       <Filter>Header Files</Filter>
-    </ClInclude>  </ItemGroup>
+    </ClInclude>
+    <ClInclude Include="E:\HerugrimApriori\linkedList.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="itemsetHolder.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
 </Project>
