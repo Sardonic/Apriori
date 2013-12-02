@@ -97,7 +97,7 @@ std::ostream& operator<<(std::ostream& os, ItemsetHolder& obj)
 
 	for (int i = 0; i < obj.getCount(); i++)
 	{
-		cout << *(obj.getData(i)) << endl;
+		os << *(obj.getData(i)) << endl;
 	}
 
 	return os;

@@ -4,15 +4,15 @@ using namespace std;
 
 void ItemsetStub();
 void DatasetPopulateStub();
-void OneItemsetStub();
+void AllItemsetStub();
 
-#define DEBUG_FILENAME "T5N1.00KD1.00K"
+#define DEBUG_FILENAME "testfile"
 
 int main()
 {
 	//ItemsetStub();
 	//DatasetPopulateStub();
-	OneItemsetStub();
+	AllItemsetStub();
 
 	/*
 	Dataset mainData = Dataset();
@@ -102,11 +102,10 @@ void DatasetPopulateStub()
 	getline(cin, junk);
 }
 
-void OneItemsetStub()
+void AllItemsetStub()
 {
 	Dataset tempDataset;
 
-	
 	string fileName;
 	//cout << "Enter name of .input (DO NOT INCLUDE .input):\n";
 	//getline(cin, fileName);
@@ -121,7 +120,10 @@ void OneItemsetStub()
 	tempDataset.populateArray(DEBUG_FILENAME);
 	//tempDataset.printArray();
 
-	tempDataset.generateItemSet(2, 0);
+	tempDataset.generateAllItemsets(0.025);
+	//tempDataset.generateItemset(5, 0.5);
+
+	tempDataset.printItemsets();
 
 	string junk;
 	cout << "Test complete. Press enter to continue." << endl;

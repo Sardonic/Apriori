@@ -6,7 +6,10 @@
 //Post: None
 //Purpose: default constructor
 //**********************************************************************
-Dataset::Dataset(){}
+Dataset::Dataset()
+{
+	mNumItemsets = 0;
+}
 
 //Pre: None
 //Post: None
@@ -36,58 +39,78 @@ void Dataset::allocateArrayMemory()
 	}
 }
 
-void Dataset::generateItemSet(int itemSet, double supportThreshold)
+void Dataset::generateAllItemsets(double supportThreshold)
 {
-	ItemsetHolder holder(itemSet);
-	int itemCount = 0;
-	int loopsLeft = itemSet;
-	int recursionIterator = 0;
+	int i = 1;
 
-	int* setArray = new int[itemSet];
+	generateItemset(i, supportThreshold);
 
-	generateItemsetRecur(recursionIterator, itemSet, loopsLeft, supportThreshold, setArray, holder);
+	while(mNumItemsets == i)
+	{
+		i++;
 
-	mAllItemsets.insert(&holder);
-
-	delete []setArray;
-	cout << holder;
+		generateItemset(i, supportThreshold);
+	}
 }
 
-void Dataset::generateItemsetRecur(int recursionIterator, int itemSet, int loopsLeft, double supportThreshold, int* setArray, ItemsetHolder& holder)
+void Dataset::generateItemset(int itemset, double supportThreshold)
+{
+	ItemsetHolder holder(itemset);
+	int itemCount = 0;
+	int loopsLeft = itemset;
+	int recursionIterator = 0;
+
+	int* setArray = new int[itemset];
+
+	generateItemsetRecur(recursionIterator, itemset, loopsLeft, supportThreshold, setArray, holder);
+
+	if(holder.getCount() > 0)
+	{
+		mNumItemsets++;
+	}
+
+	mAllItemsets.insert(&holder);
+	cout << holder;
+	delete []setArray;
+}
+
+void Dataset::generateItemsetRecur(int recursionIterator, int itemset, int loopsLeft, double supportThreshold, int* setArray, ItemsetHolder& holder)
 {
 	if(loopsLeft > 0)
 	{
 		for(int i = recursionIterator; i <= mNumTotalItems; i++)
 		{
-			setArray[itemSet - loopsLeft] = i;
+			setArray[itemset - loopsLeft] = i;
 
-			generateItemsetRecur(i, itemSet, loopsLeft - 1, supportThreshold, setArray, holder);
+			generateItemsetRecur(i + 1, itemset, loopsLeft - 1, supportThreshold, setArray, holder);
 		}
 	}
 	else
 	{
-		for(int i = 0; i < itemSet; i++)
+		int itemCount = 0;
+
+		for(int i = 0; i < mNumTransactions; i++)
 		{
 			int allItemsCheck = 0;
-			int itemCount = 0;
 
-			for(int j = 0; j < mNumTransactions; j++)
+			for(int j = 0; j < itemset; j++)
 			{
-				allItemsCheck += mDataArray[j][setArray[i]];
+				allItemsCheck += mDataArray[i][setArray[j]];
 
-				if(allItemsCheck == itemSet)
+				if(allItemsCheck == itemset)
 				{
 					itemCount++;
 				}
-
-				allItemsCheck = 0;
 			}
 
-			if(itemCount >= (supportThreshold * mNumTransactions))
+			allItemsCheck = 0;
+		}
+
+		if(itemCount >= (supportThreshold * mNumTransactions))
 			{
-				Itemset* currItemset = new Itemset(itemSet);
+				Itemset* currItemset = new Itemset(itemset);
 				
-				for(int k = 0; k < itemSet; k++)
+				for(int k = 0; k < itemset; k++)
 				{
 					currItemset->addItem(setArray[k]);
 				}
@@ -95,7 +118,6 @@ void Dataset::generateItemsetRecur(int recursionIterator, int itemSet, int loops
 				holder.insert(currItemset);
 			}
 		}
-	}
 }
 
 
@@ -183,5 +205,13 @@ void Dataset::printArray()
 			cout << mDataArray[i][j] << " ";
 		}
 		cout << "\n\n";
+	}
+}
+
+void Dataset::printItemsets()
+{
+	for(int i = 0; i < mAllItemsets.getCount(); i++)
+	{
+		cout << *(mAllItemsets.getData(i));
 	}
 }
