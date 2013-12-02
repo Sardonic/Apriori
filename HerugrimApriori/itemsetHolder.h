@@ -6,6 +6,7 @@
 
 using namespace std;
 
+
 class ItemsetHolder : public Queue<Itemset>
 {
 public:

@@ -40,7 +40,7 @@ typedef int Item;
 class Itemset
 {
 public:
-	Itemset(int size);
+	Itemset(int size = 1);
 	~Itemset();
 
 	bool getItem(int index, Item& output);
