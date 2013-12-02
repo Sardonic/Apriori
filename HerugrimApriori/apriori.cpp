@@ -12,9 +12,9 @@ int main()
 {
 	//ItemsetStub();
 	//DatasetPopulateStub();
-	AllItemsetStub();
+	//AllItemsetStub();
 
-	/*
+
 	Dataset mainData = Dataset();
 
 	string fileName, junk;
@@ -28,7 +28,8 @@ int main()
 		cout << "Enter name of .input (DO NOT INCLUDE .input):\n";
 		getline(cin, fileName);
 	}
-	*/
+	
+	
 
 	return 0;
 } 
@@ -123,7 +124,7 @@ void AllItemsetStub()
 	tempDataset.generateAllItemsets(0.025);
 	//tempDataset.generateItemset(5, 0.5);
 
-	tempDataset.printItemsets();
+	tempDataset.printItemsets(cout);
 
 	string junk;
 	cout << "Test complete. Press enter to continue." << endl;

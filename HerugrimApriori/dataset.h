@@ -23,8 +23,9 @@ class Dataset
 		void generateAllItemsets(double supportThreshold);
 		void generateItemset(int itemSet, double supportThreshold);
 		void populateArray(string fileName);
-		void printArray();
-		void printItemsets();
+		void printArray(ostream& os);
+		void printItemsets(ostream& os);
+		void writeToFile(string filename);
 
 	private:
 		LinkedList<ItemsetHolder*> mAllItemsets;

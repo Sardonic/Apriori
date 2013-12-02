@@ -196,22 +196,31 @@ void Dataset::populateArray(string filename)
 //Post: None
 //Purpose: prints the current contents of the array
 //**********************************************************************
-void Dataset::printArray()
+void Dataset::printArray(ostream& os)
 {
 	for(int i = 0; i < mNumTransactions; i++)
 	{
 		for(int j = 0; j < mNumTotalItems; j++)
 		{
-			cout << mDataArray[i][j] << " ";
+			os << mDataArray[i][j] << " ";
 		}
-		cout << "\n\n";
+		os << "\n\n";
 	}
 }
 
-void Dataset::printItemsets()
+void Dataset::printItemsets(ostream& os)
 {
 	for(int i = 0; i < mAllItemsets.getCount(); i++)
 	{
-		cout << *(mAllItemsets.getData(i));
+		os << *(mAllItemsets.getData(i));
 	}
+}
+
+void Dataset::writeToFile(string filename)
+{
+	ofstream outfile(filename);
+
+	printItemsets(outfile);
+
+	outfile.close();
 }
