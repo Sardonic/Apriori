@@ -47,10 +47,10 @@
     <ClInclude Include="timerSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="E:\HerugrimApriori\linkedList.h">
+    <ClInclude Include="itemsetHolder.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="itemsetHolder.h">
+    <ClInclude Include="linkedList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

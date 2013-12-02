@@ -34,10 +34,10 @@ bool operator<(ItemsetHolder& rhs, ItemsetHolder& lhs)
 	}
 }
 
-template <class T>
 std::ostream& operator<<(std::ostream& os, ItemsetHolder& obj)
 {
-	Node<T>* tmp;
+	/*
+	Node<Itemset*>* tmp;
 
 	if (obj.mHead == NULL)
 	{
@@ -55,4 +55,16 @@ std::ostream& operator<<(std::ostream& os, ItemsetHolder& obj)
 	os << endl;
 
 	return os;
+	*/
+
+	if (obj.getCount() == 0)
+	{
+		os << "The list is empty\n";
+		return os;
+	}
+
+	for (int i = 0; i < obj.getCount(); i++)
+	{
+		cout << *(obj.getData(i)) << endl;
+	}
 }

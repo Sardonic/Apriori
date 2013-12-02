@@ -26,7 +26,7 @@ Itemset::Itemset(int size)
  ***************************************************/
 Itemset::~Itemset()
 {
-
+	// empty
 }
 
 /*      Pre:  Itemset is filled

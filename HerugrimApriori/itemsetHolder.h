@@ -17,7 +17,7 @@ public:
 
 	friend bool operator>(ItemsetHolder& rhs, ItemsetHolder& lhs);
 	friend bool operator<(ItemsetHolder& rhs, ItemsetHolder& lhs);
-	friend ostream& operator<<(std::ostream& os, ItemsetHolder& obj);
+	friend ostream& operator<<(ostream& os, ItemsetHolder& obj);
 
 private:
 	int whichItemset;

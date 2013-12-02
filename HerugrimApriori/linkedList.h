@@ -36,7 +36,7 @@ public:
 	void setData(int index, T data);
 
 	void clear();
-	void display();
+	virtual void display();
 	int getIndex(T searchKey);
 	void insert(T data);
 	bool isEmpty();

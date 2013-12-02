@@ -40,19 +40,19 @@ void Dataset::generateItemSet(int itemSet, float supportThreshold)
 {
 	ItemsetHolder holder(itemSet);
 
-	int itemCount = 0;
-
 	switch(itemSet)
 	{
 	case 1:
 		for(int i = 0; i <= mNumTotalItems; i++)
 		{
+			int itemCount = 0;
+
 			for(int j = 0; j < mNumTransactions; j++)
 			{
 				itemCount += mDataArray[j][i];
 			}
 
-			if(itemCount >= supportThreshold)
+			if(((float)itemCount / mNumTransactions) >= (supportThreshold * mNumTransactions))
 			{
 				Itemset* currItemset = new Itemset(itemSet);
 				currItemset->addItem(i);
@@ -62,7 +62,7 @@ void Dataset::generateItemSet(int itemSet, float supportThreshold)
 		}
 	}
 
-	holder.display();
+	cout << holder;
 }
 
 //Pre: inputFileName name has been instantiated;
@@ -89,6 +89,7 @@ bool Dataset::getSpecifications(string inputFileName)
 
 		mNumTotalItems = numItems;
 		mNumTransactions = numTrans;
+		inputFile.close();
 		return true;
 	}
 

@@ -6,6 +6,8 @@ void ItemsetStub();
 void DatasetPopulateStub();
 void OneItemsetStub();
 
+#define DEBUG_FILENAME "T15N1.00KD1.00K"
+
 int main()
 {
 	//ItemsetStub();
@@ -104,21 +106,22 @@ void OneItemsetStub()
 {
 	Dataset tempDataset;
 
+	
 	string fileName;
-	cout << "Enter name of .input (DO NOT INCLUDE .input):\n";
-	getline(cin, fileName);
-
-	while(tempDataset.getSpecifications(fileName) == false)
+	//cout << "Enter name of .input (DO NOT INCLUDE .input):\n";
+	//getline(cin, fileName);
+	
+	while(tempDataset.getSpecifications(DEBUG_FILENAME) == false)
 	{
 		cout << "~Error: Invalid File Name~\n";
 		cout << "Enter name of .input (DO NOT INCLUDE .input):\n";
 		getline(cin, fileName);
 	}
 
-	tempDataset.populateArray(fileName);
+	tempDataset.populateArray(DEBUG_FILENAME);
 	//tempDataset.printArray();
 
-	tempDataset.generateItemSet(1, 250);
+	tempDataset.generateItemSet(1, 0.05);
 
 	string junk;
 	cout << "Test complete. Press enter to continue." << endl;

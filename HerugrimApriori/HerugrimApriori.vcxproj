@@ -72,9 +72,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="dataset.h" />
-    <ClInclude Include="E:\HerugrimApriori\linkedList.h" />
     <ClInclude Include="itemsetHolder.h" />
     <ClInclude Include="itemset.h" />
+    <ClInclude Include="linkedList.h" />
     <ClInclude Include="node.h" />
     <ClInclude Include="queue.h" />
     <ClInclude Include="timerSystem.h" />
