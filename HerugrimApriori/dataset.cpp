@@ -19,7 +19,10 @@ Dataset::~Dataset()
 {
 	for(int i = 0; i < mNumTransactions; i++)
 	{
-		delete [] mDataArray[i];
+		if(mDataArray[i])
+		{
+			delete [] mDataArray[i];
+		}
 	}
 
 	delete [] mDataArray;
@@ -31,28 +34,38 @@ Dataset::~Dataset()
 //**********************************************************************
 void Dataset::allocateArrayMemory()
 {
-	mDataArray = new int*[mNumTransactions + 1]();
+	mDataArray = new int*[mNumTransactions]();
 
-	for(int i = 0; i <= mNumTransactions; i++)
+	for(int i = 0; i < mNumTransactions; i++)
 	{
-		mDataArray[i] = new int[mNumTotalItems + 1]();
+		mDataArray[i] = new int[mNumTotalItems + 2](); //mNumTotalItems + 1 used for pruning
 	}
 }
 
+//Pre: Data array is populated
+//Post: All possible itemsets are in the allItemsets linked list
+//Purpose: To generate all possible itemsets
+//**********************************************************************
 void Dataset::generateAllItemsets(double supportThreshold, ostream& outStream)
 {
 	int i = 1;
 
+	cout << "Generating 1-itemsets...\n";
 	generateItemset(i, supportThreshold, outStream);
 
 	while(mNumItemsets == i)
 	{
 		i++;
 
+		cout << "\nGenerating " << i << "-itemsets...\n";
 		generateItemset(i, supportThreshold, outStream);
 	}
 }
 
+//Pre: Data array is populated
+//Post: A new dataset is in the allItemsets linked list and the database array is pruned
+//Purpose: To generate an itemset and prune the array
+//**********************************************************************
 void Dataset::generateItemset(int itemset, double supportThreshold, ostream& outStream)
 {
 	ItemsetHolder holder(itemset);
@@ -69,11 +82,31 @@ void Dataset::generateItemset(int itemset, double supportThreshold, ostream& out
 		mNumItemsets++;
 	}
 
+	for(int i = 0; i < mNumTransactions; i++)
+	{
+		if(mDataArray[i])
+		{
+			if(mDataArray[i][mNumTotalItems+1] != itemset)
+			{
+				delete[] mDataArray[i];
+				mDataArray[i] = NULL;
+			}
+			else
+			{
+				mDataArray[i][mNumTotalItems+1] = 0;
+			}
+		}
+	}
+
 	mAllItemsets.insert(&holder);
 	outStream << holder;
 	delete []setArray;
 }
 
+//Pre: We want to generate an itemset
+//Post: We have an itemset generated
+//Purpose: Recursively generates an itemset
+//**********************************************************************
 void Dataset::generateItemsetRecur(int recursionIterator, int itemset, int loopsLeft, double supportThreshold, int* setArray, ItemsetHolder& holder)
 {
 	if(loopsLeft > 0)
@@ -88,36 +121,46 @@ void Dataset::generateItemsetRecur(int recursionIterator, int itemset, int loops
 	else
 	{
 		int itemCount = 0;
+		LinkedList<int> goodTransactionList;
 
 		for(int i = 0; i < mNumTransactions; i++)
 		{
-			int allItemsCheck = 0;
-
-			for(int j = 0; j < itemset; j++)
+			if(mDataArray[i])
 			{
-				allItemsCheck += mDataArray[i][setArray[j]];
+				int allItemsCheck = 0;
 
-				if(allItemsCheck == itemset)
+				for(int j = 0; j < itemset; j++)
 				{
-					itemCount++;
-				}
-			}
+					allItemsCheck += mDataArray[i][setArray[j]];
 
-			allItemsCheck = 0;
+					if(allItemsCheck == itemset)
+					{
+						itemCount++;
+						goodTransactionList.insert(i);
+					}
+				}
+
+				allItemsCheck = 0;
+			}
 		}
 
 		if(itemCount >= (supportThreshold * mNumTransactions))
-			{
-				Itemset* currItemset = new Itemset(itemset);
+		{
+			Itemset* currItemset = new Itemset(itemset);
 				
-				for(int k = 0; k < itemset; k++)
-				{
-					currItemset->addItem(setArray[k]);
-				}
+			for(int k = 0; k < itemset; k++)
+			{
+				currItemset->addItem(setArray[k]);
+			}
 
-				holder.insert(currItemset);
+			holder.insert(currItemset);
+
+			for(int i = 0; i < goodTransactionList.getCount(); i++)
+			{
+				mDataArray[goodTransactionList.getData(i)][mNumTotalItems+1] = itemset;
 			}
 		}
+	}
 }
 
 
@@ -200,10 +243,14 @@ void Dataset::printArray(ostream& os)
 {
 	for(int i = 0; i < mNumTransactions; i++)
 	{
-		for(int j = 0; j < mNumTotalItems; j++)
+		if(mDataArray[i])
 		{
-			os << mDataArray[i][j] << " ";
+			for(int j = 0; j <= mNumTotalItems + 1; j++)
+			{
+				os << mDataArray[i][j] << " ";
+			}
+		
+			os << "\n\n";
 		}
-		os << "\n\n";
 	}
 }

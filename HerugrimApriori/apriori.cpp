@@ -17,7 +17,6 @@ int main()
 
 	TimerSystem timer;
 	double time = 0;
-	
 
 	char continueGenerating = 'y';
 
@@ -57,7 +56,7 @@ int main()
 		cout << "Generating itemsets..." << endl << endl;
 
 		timer.startClock();
-		mainData.generateAllItemsets(0.0025, outFile);
+		mainData.generateAllItemsets(threshold, outFile);
 		time = timer.getTime();
 
 		cout << "Finished in " << time << " seconds.\n\n\n";
@@ -71,6 +70,8 @@ int main()
 			cin.clear();
 			cin.ignore(100, '\n');
 		}
+
+		outFile.close();
 	}
 
 	string junk;
