@@ -39,21 +39,21 @@ void Dataset::allocateArrayMemory()
 	}
 }
 
-void Dataset::generateAllItemsets(double supportThreshold)
+void Dataset::generateAllItemsets(double supportThreshold, ostream& outStream)
 {
 	int i = 1;
 
-	generateItemset(i, supportThreshold);
+	generateItemset(i, supportThreshold, outStream);
 
 	while(mNumItemsets == i)
 	{
 		i++;
 
-		generateItemset(i, supportThreshold);
+		generateItemset(i, supportThreshold, outStream);
 	}
 }
 
-void Dataset::generateItemset(int itemset, double supportThreshold)
+void Dataset::generateItemset(int itemset, double supportThreshold, ostream& outStream)
 {
 	ItemsetHolder holder(itemset);
 	int itemCount = 0;
@@ -70,7 +70,7 @@ void Dataset::generateItemset(int itemset, double supportThreshold)
 	}
 
 	mAllItemsets.insert(&holder);
-	cout << holder;
+	outStream << holder;
 	delete []setArray;
 }
 
@@ -206,21 +206,4 @@ void Dataset::printArray(ostream& os)
 		}
 		os << "\n\n";
 	}
-}
-
-void Dataset::printItemsets(ostream& os)
-{
-	for(int i = 0; i < mAllItemsets.getCount(); i++)
-	{
-		os << *(mAllItemsets.getData(i));
-	}
-}
-
-void Dataset::writeToFile(string filename)
-{
-	ofstream outfile(filename);
-
-	printItemsets(outfile);
-
-	outfile.close();
 }

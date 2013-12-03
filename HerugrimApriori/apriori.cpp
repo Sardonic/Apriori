@@ -16,100 +16,64 @@ int main()
 	//AllItemsetStub();
 
 	TimerSystem timer;
-	Dataset mainData = Dataset();
 	double time = 0;
 	
 
-	string fileName, junk;
+	char continueGenerating = 'y';
 
-	cout << "Enter name of .input (DO NOT INCLUDE .input):\n";
-	getline(cin, fileName);
-
-	while(mainData.getSpecifications(fileName) == false)
+	while(continueGenerating == 'y' || continueGenerating == 'Y')
 	{
-		cout << "~Error: Invalid File Name~\n";
+		Dataset mainData = Dataset();
+		string fileName;
+	
 		cout << "Enter name of .input (DO NOT INCLUDE .input):\n";
 		getline(cin, fileName);
+
+		while(mainData.getSpecifications(fileName) == false)
+		{
+			cout << "~Error: Invalid File Name~\n";
+			cout << "Enter name of .input (DO NOT INCLUDE .input):\n";
+			getline(cin, fileName);
+		}
+
+		double threshold = 0;
+
+		while(threshold <= 0 || threshold > 1)
+		{
+			cout << "Enter the desired minimum support threshold, between 1 and 0. \n(1 = 100% and 0 = 0%)\n";
+			cin >> threshold;
+
+			cin.clear();
+			cin.ignore(100, '\n');
+		}
+
+		string outFileName;
+		cout << "Enter the desired output file name: ";
+		getline(cin, outFileName);
+		ofstream outFile(outFileName + ".txt");
+
+		mainData.populateArray(fileName);
+
+		cout << "Generating itemsets..." << endl << endl;
+
+		timer.startClock();
+		mainData.generateAllItemsets(0.0025, outFile);
+		time = timer.getTime();
+
+		cout << "Finished in " << time << " seconds.\n\n\n";
+
+		continueGenerating = NULL;
+		while(continueGenerating != 'y' && continueGenerating != 'Y' && continueGenerating != 'n' && continueGenerating != 'N')
+		{
+			cout << "Would you like to generate another itemset? y/n\n";
+			cin >> continueGenerating;
+
+			cin.clear();
+			cin.ignore(100, '\n');
+		}
 	}
 
-	mainData.populateArray(fileName);
-
-	cout << "Checking 0.25% threshold..." << endl << endl;
-
-	timer.startClock();
-	mainData.generateAllItemsets(0.0025);
-	time = timer.getTime();
-
-	cout << "Finished in " << time << " seconds.";
-
-	mainData.writeToFile(fileName + "-0.25threshold.txt");
-
-	
-	mainData.populateArray(fileName);
-
-	
-	cout << "Checking 0.5% threshold..." << endl << endl;
-
-	timer.startClock();
-	mainData.generateAllItemsets(0.005);
-	time = timer.getTime();
-
-	cout << "Finished in " << time << " seconds.";
-
-	mainData.writeToFile(fileName + "-0.5threshold.txt");
-
-	
-	mainData.populateArray(fileName);
-
-	cout << "Checking 1% threshold..." << endl << endl;
-
-	timer.startClock();
-	mainData.generateAllItemsets(0.01);
-	time = timer.getTime();
-
-	cout << "Finished in " << time << " seconds.";
-
-	mainData.writeToFile(fileName + "-1threshold.txt");
-
-	
-	mainData.populateArray(fileName);
-
-	cout << "Checking 2.5% threshold..." << endl << endl;
-
-	timer.startClock();
-	mainData.generateAllItemsets(0.025);
-	time = timer.getTime();
-
-	cout << "Finished in " << time << " seconds.";
-
-	mainData.writeToFile(fileName + "-2.5threshold.txt");
-
-	
-	mainData.populateArray(fileName);
-
-	cout << "Checking 10% threshold..." << endl << endl;
-
-	timer.startClock();
-	mainData.generateAllItemsets(0.1);
-	time = timer.getTime();
-
-	cout << "Finished in " << time << " seconds.";
-
-	mainData.writeToFile(fileName + "-10threshold.txt");
-
-	
-	mainData.populateArray(fileName);
-
-	cout << "Checking 25% threshold..." << endl << endl;
-
-	timer.startClock();
-	mainData.generateAllItemsets(0.25);
-	time = timer.getTime();
-
-	cout << "Finished in " << time << " seconds.";
-
-	mainData.writeToFile(fileName + "-25threshold.txt");
-
+	string junk;
 	cout << endl << "Press enter to continue..." << endl;
 	getline(cin, junk);
 
@@ -203,10 +167,8 @@ void AllItemsetStub()
 	tempDataset.populateArray(DEBUG_FILENAME);
 	//tempDataset.printArray();
 
-	tempDataset.generateAllItemsets(0.025);
+	//tempDataset.generateAllItemsets(0.025);
 	//tempDataset.generateItemset(5, 0.5);
-
-	tempDataset.printItemsets(cout);
 
 	string junk;
 	cout << "Test complete. Press enter to continue." << endl;

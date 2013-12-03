@@ -70,7 +70,7 @@ std::ostream& operator<<(std::ostream& os, ItemsetHolder& obj)
 {
 	if (obj.getCount() == 0)
 	{
-		os << "The list is empty\n";
+		os << "There are no " << obj.whichItemset << " itemsets\n";
 		return os;
 	}
 
