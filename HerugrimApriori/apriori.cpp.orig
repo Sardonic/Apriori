@@ -27,6 +27,42 @@ int main()
 	
 		cout << "Enter name of .input (DO NOT INCLUDE .input):\n";
 		getline(cin, fileName);
+<<<<<<< HEAD
+	}
+
+	mainData.populateArray(fileName);
+
+	cout << "Checking 25% threshold..." << endl << endl;
+
+	timer.startClock();
+	mainData.generateAllItemsets(0.25);
+	time = timer.getTime();
+
+	cout << "Finished in " << time << " seconds.";
+
+	mainData.writeToFile(fileName + "-25threshold.txt");
+
+	
+
+	cout << "Checking 0.25% threshold..." << endl << endl;
+
+	timer.startClock();
+	mainData.generateAllItemsets(0.0025);
+	time = timer.getTime();
+
+	cout << "Finished in " << time << " seconds.";
+
+	mainData.writeToFile(fileName + "-0.25threshold.txt");
+
+
+	
+	cout << "Checking 0.5% threshold..." << endl << endl;
+
+	timer.startClock();
+	mainData.generateAllItemsets(0.005);
+	time = timer.getTime();
+=======
+>>>>>>> b57e05e2f8825d70abae5f2077e3923490f91b3e
 
 		while(mainData.getSpecifications(fileName) == false)
 		{
@@ -37,23 +73,51 @@ int main()
 
 		double threshold = 0;
 
+<<<<<<< HEAD
+	
+
+	cout << "Checking 1% threshold..." << endl << endl;
+
+	timer.startClock();
+	mainData.generateAllItemsets(0.01);
+	time = timer.getTime();
+=======
 		while(threshold <= 0 || threshold > 1)
 		{
 			cout << "Enter the desired minimum support threshold, between 1 and 0. \n(1 = 100% and 0 = 0%)\n";
 			cin >> threshold;
+>>>>>>> b57e05e2f8825d70abae5f2077e3923490f91b3e
 
 			cin.clear();
 			cin.ignore(100, '\n');
 		}
 
+<<<<<<< HEAD
+	mainData.writeToFile(fileName + "-1threshold.txt");
+
+	
+=======
 		string outFileName;
-		cout << "Enter the desired output file name (no .txt extension, please): ";
+		cout << "Enter the desired output file name: ";
 		getline(cin, outFileName);
 		ofstream outFile(outFileName + ".txt");
+>>>>>>> b57e05e2f8825d70abae5f2077e3923490f91b3e
 
 		mainData.populateArray(fileName);
 
+<<<<<<< HEAD
+	timer.startClock();
+	mainData.generateAllItemsets(0.025);
+	time = timer.getTime();
+
+	cout << "Finished in " << time << " seconds.";
+
+	mainData.writeToFile(fileName + "-2.5threshold.txt");
+
+	
+=======
 		cout << "Generating itemsets..." << endl << endl;
+>>>>>>> b57e05e2f8825d70abae5f2077e3923490f91b3e
 
 		timer.startClock();
 		mainData.generateAllItemsets(threshold, outFile);
@@ -71,10 +135,14 @@ int main()
 			cin.ignore(100, '\n');
 		}
 
+<<<<<<< HEAD
+	
+=======
 		outFile.close();
 	}
 
 	string junk;
+>>>>>>> b57e05e2f8825d70abae5f2077e3923490f91b3e
 	cout << endl << "Press enter to continue..." << endl;
 	getline(cin, junk);
 
