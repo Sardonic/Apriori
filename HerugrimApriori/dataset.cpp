@@ -53,7 +53,7 @@ void Dataset::generateAllItemsets(double supportThreshold, ostream& outStream)
 	cout << "Generating 1-itemsets...\n";
 	generateItemset(i, supportThreshold, outStream);
 
-	while(mNumItemsets == i - 1)
+	while(mNumItemsets == i)
 	{
 		i++;
 
