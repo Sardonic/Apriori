@@ -49,6 +49,9 @@ public:
 	bool addItem(Item newItem);
 	int  getSize();
 
+	void setFrequency(int frequency);
+	int getFrequency();
+
 	friend std::ostream& operator<<(std::ostream& os, Itemset& obj);
 
 	friend bool operator<(Itemset& lhs, Itemset& rhs);
@@ -60,6 +63,7 @@ private:
 	LinkedList<Item> mItems;
 	int mSize;
 	bool isFull;
+	int mFrequncy;
 };
 
 std::ostream& operator<<(std::ostream& os, const Itemset& obj);

@@ -73,6 +73,24 @@ int Itemset::getSize()
 	return mSize;
 }
 
+/*      Pre:  Frequency has a value
+ *     Post:  None
+ *  Purpose:  To set the frequency of the itemset
+ ***************************************************/
+void Itemset::setFrequency(int frequency)
+{
+	mFrequncy = frequency;
+}
+
+/*      Pre:  None
+ *     Post:  Returns frequency
+ *  Purpose:  To get the frequency of the itemset
+ ***************************************************/
+int Itemset::getFrequency()
+{
+	return mFrequncy;
+}
+
 // Operator overloads ///////////////
 
 /*      Pre:  Itemset is full
@@ -97,7 +115,8 @@ std::ostream& operator<<(std::ostream& os, Itemset& obj)
 		}
 	}
 
-	os << " }";
+	os << " } : (" << obj.getFrequency() <<")";
+
 
 	return os;
 }

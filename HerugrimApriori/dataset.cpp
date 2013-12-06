@@ -49,16 +49,27 @@ void Dataset::allocateArrayMemory()
 void Dataset::generateAllItemsets(double supportThreshold, ostream& outStream)
 {
 	int i = 1;
-
+	double time;
+	outStream << "Itemsets generated with "<< supportThreshold * 100 << "% support threshold:\n";
 	cout << "Generating 1-itemsets...\n";
+
+	mTimer.startClock();
 	generateItemset(i, supportThreshold, outStream);
+	time = mTimer.getTime();
+
+	outStream <<  "Finished generating 1-itemSets in " << time << " seconds\n\n\n";
 
 	while(mNumItemsets == i)
 	{
 		i++;
 
 		cout << "\nGenerating " << i << "-itemsets...\n";
+
+		mTimer.startClock();
 		generateItemset(i, supportThreshold, outStream);
+		time = mTimer.getTime();
+
+		outStream <<  "Finished generating "<< i << "-itemSets in " << time << " seconds\n\n\n";
 	}
 }
 
@@ -143,7 +154,7 @@ void Dataset::generateItemsetRecur(int recursionIterator, int itemset, int loops
 				allItemsCheck = 0;
 			}
 		}
-
+		
 		if(itemCount >= (supportThreshold * mNumTransactions))
 		{
 			Itemset* currItemset = new Itemset(itemset);
@@ -152,6 +163,8 @@ void Dataset::generateItemsetRecur(int recursionIterator, int itemset, int loops
 			{
 				currItemset->addItem(setArray[k]);
 			}
+
+			currItemset->setFrequency(itemCount);
 
 			holder.insert(currItemset);
 

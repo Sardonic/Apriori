@@ -74,10 +74,11 @@ std::ostream& operator<<(std::ostream& os, ItemsetHolder& obj)
 {
 	if (obj.getCount() == 0)
 	{
-		os << "There are no " << obj.whichItemset << " itemsets\n";
+		os << "There are no " << obj.whichItemset << "-itemsets\n";
 		return os;
 	}
 
+	os << "There are " << obj.getCount() << ", " << obj.whichItemset << "-itemsets\n";
 	for (int i = 0; i < obj.getCount(); i++)
 	{
 		os << *(obj.getData(i)) << endl;

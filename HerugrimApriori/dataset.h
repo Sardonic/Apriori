@@ -6,6 +6,7 @@
 #include "itemsetHolder.h"
 #include "itemset.h"
 #include "linkedList.h"
+#include "timerSystem.h"
 
 using namespace std;
 
@@ -31,6 +32,7 @@ class Dataset
 		int mNumTransactions;
 		int mNumTotalItems;
 		int mNumItemsets;
+		TimerSystem mTimer;
 
 		void generateItemsetRecur(int recursionIterator, int itemSet, int loopsLeft, double supportThreshold, int* setArray, ItemsetHolder& holder);
 };
