@@ -66,11 +66,15 @@ bool operator<=(ItemsetHolder& rhs, ItemsetHolder& lhs)
 	}
 }
 
+/*      Pre:  None
+ *     Post:  ItemsetHolder is outputted
+ *  Purpose:  To output the ItemsetHolder
+ ***************************************************/
 std::ostream& operator<<(std::ostream& os, ItemsetHolder& obj)
 {
 	if (obj.getCount() == 0)
 	{
-		os << "The list is empty\n";
+		os << "There are no " << obj.whichItemset << " itemsets\n";
 		return os;
 	}
 

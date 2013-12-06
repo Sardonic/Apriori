@@ -20,12 +20,10 @@ class Dataset
 
 		void allocateArrayMemory();
 		bool getSpecifications(string inputFileName);
-		void generateAllItemsets(double supportThreshold);
-		void generateItemset(int itemSet, double supportThreshold);
+		void generateAllItemsets(double supportThreshold, ostream& outStream);
+		void generateItemset(int itemSet, double supportThreshold, ostream& outStream);
 		void populateArray(string fileName);
 		void printArray(ostream& os);
-		void printItemsets(ostream& os);
-		void writeToFile(string filename);
 
 	private:
 		LinkedList<ItemsetHolder*> mAllItemsets;
