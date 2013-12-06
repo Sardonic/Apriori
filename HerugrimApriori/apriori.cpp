@@ -42,9 +42,6 @@ int main()
 			cout << "Enter the desired minimum support threshold, between 1 and 0. \n(1 = 100% and 0 = 0%)\n";
 			cin >> threshold;
 
-			// degub code
-			cout << threshold;
-
 			cin.clear();
 			cin.ignore(100, '\n');
 		}
