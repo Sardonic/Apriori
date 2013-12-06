@@ -39,6 +39,10 @@ void Dataset::allocateArrayMemory()
 	}
 }
 
+//Pre: support threshold has been choosen, ostream has been instantiated
+//Post: all itemsets are generated
+//Purpose: generate all itemsets
+//**********************************************************************
 void Dataset::generateAllItemsets(double supportThreshold, ostream& outStream)
 {
 	int i = 1;
@@ -53,6 +57,10 @@ void Dataset::generateAllItemsets(double supportThreshold, ostream& outStream)
 	}
 }
 
+//Pre: itemset number is choosen, support threshold has been choosen, ostream has been instantiated
+//Post: n-itemset is generated
+//Purpose: starts off the recursion calls to generate all items in the itemset
+//***************************************************************************************************
 void Dataset::generateItemset(int itemset, double supportThreshold, ostream& outStream)
 {
 	ItemsetHolder holder(itemset);
@@ -64,7 +72,7 @@ void Dataset::generateItemset(int itemset, double supportThreshold, ostream& out
 
 	generateItemsetRecur(recursionIterator, itemset, loopsLeft, supportThreshold, setArray, holder);
 
-	if(holder.getCount() > 0)
+	if(holder.getCount() > 0) // if 0 then no n-itemsets were found and the algorithm will end
 	{
 		mNumItemsets++;
 	}
@@ -74,6 +82,10 @@ void Dataset::generateItemset(int itemset, double supportThreshold, ostream& out
 	delete []setArray;
 }
 
+//Pre: number of recursions done, n-itemset is determined, number of loops left, support threshold, current set to check, itemset holder has been made
+//Post: n-itemset is generated
+//Purpose: starts off the recursion calls to generate all items in the itemset
+//***************************************************************************************************
 void Dataset::generateItemsetRecur(int recursionIterator, int itemset, int loopsLeft, double supportThreshold, int* setArray, ItemsetHolder& holder)
 {
 	if(loopsLeft > 0)
@@ -89,6 +101,7 @@ void Dataset::generateItemsetRecur(int recursionIterator, int itemset, int loops
 	{
 		int itemCount = 0;
 
+		//Counts the occurence of the itemset
 		for(int i = 0; i < mNumTransactions; i++)
 		{
 			int allItemsCheck = 0;
@@ -106,6 +119,7 @@ void Dataset::generateItemsetRecur(int recursionIterator, int itemset, int loops
 			allItemsCheck = 0;
 		}
 
+		//Checks to see if the itemset passes the support threshold
 		if(itemCount >= (supportThreshold * mNumTransactions))
 			{
 				Itemset* currItemset = new Itemset(itemset);
@@ -115,7 +129,7 @@ void Dataset::generateItemsetRecur(int recursionIterator, int itemset, int loops
 					currItemset->addItem(setArray[k]);
 				}
 
-				holder.insert(currItemset);
+				holder.insert(currItemset); // adds the itemset to the holder
 			}
 		}
 }
