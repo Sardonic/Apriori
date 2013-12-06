@@ -22,7 +22,7 @@ int main()
 
 	while(continueGenerating == 'y' || continueGenerating == 'Y')
 	{
-		Dataset mainData = Dataset();
+		Dataset mainData;
 		string fileName;
 	
 		cout << "Enter name of .input (DO NOT INCLUDE .input):\n";
@@ -42,12 +42,15 @@ int main()
 			cout << "Enter the desired minimum support threshold, between 1 and 0. \n(1 = 100% and 0 = 0%)\n";
 			cin >> threshold;
 
+			// degub code
+			cout << threshold;
+
 			cin.clear();
 			cin.ignore(100, '\n');
 		}
 
 		string outFileName;
-		cout << "Enter the desired output file name: ";
+		cout << "Enter the desired output file name (no .txt extension, please): ";
 		getline(cin, outFileName);
 		ofstream outFile(outFileName + ".txt");
 
