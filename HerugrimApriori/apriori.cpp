@@ -25,6 +25,7 @@ int main()
 		Dataset mainData = Dataset();
 		string fileName;
 	
+		//get the input data file name
 		cout << "Enter name of .input (DO NOT INCLUDE .input):\n";
 		getline(cin, fileName);
 
@@ -37,6 +38,7 @@ int main()
 
 		double threshold = 0;
 
+		//get the support threshold size
 		while(threshold <= 0 || threshold > 1)
 		{
 			cout << "Enter the desired minimum support threshold, between 1 and 0. \n(1 = 100% and 0 = 0%)\n";
@@ -46,15 +48,17 @@ int main()
 			cin.ignore(100, '\n');
 		}
 
+		//get the output file
 		string outFileName;
 		cout << "Enter the desired output file name: ";
 		getline(cin, outFileName);
 		ofstream outFile(outFileName + ".txt");
 
-		mainData.populateArray(fileName);
+		mainData.populateArray(fileName); // fill the main dataset with information
 
 		cout << "Generating itemsets..." << endl << endl;
 
+		//Time the generation of all itemsets
 		timer.startClock();
 		mainData.generateAllItemsets(threshold, outFile);
 		time = timer.getTime();
@@ -81,6 +85,10 @@ int main()
 	return 0;
 } 
 
+/*      Pre:  none
+ *     Post:  none
+ *  Purpose:  Test out Itemsets
+ *****************************************************************************/
 void ItemsetStub()
 {
 	Itemset one_itemset(1);
@@ -127,6 +135,10 @@ void ItemsetStub()
 	getline(cin, junk);
 }
 
+/*      Pre:  none
+ *     Post:  none
+ *  Purpose:  To test populating the Dataset
+ *****************************************************************************/
 void DatasetPopulateStub()
 {
 	Dataset tempDataset;

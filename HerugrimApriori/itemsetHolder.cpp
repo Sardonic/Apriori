@@ -66,10 +66,17 @@ bool operator<=(ItemsetHolder& rhs, ItemsetHolder& lhs)
 	}
 }
 
+<<<<<<< HEAD
 /*      Pre:  None
  *     Post:  ItemsetHolder is outputted
  *  Purpose:  To output the ItemsetHolder
  ***************************************************/
+=======
+/*      Pre:  We have an ItemsetHolder we would like to output
+ *     Post:  we output the data in the ItemsetHolder
+ *  Purpose:  To output ItemsetHolders
+ *****************************************************************************/
+>>>>>>> 8a67393ecfb9df76b4f417317849424cd6c06404
 std::ostream& operator<<(std::ostream& os, ItemsetHolder& obj)
 {
 	if (obj.getCount() == 0)
