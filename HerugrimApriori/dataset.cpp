@@ -1,3 +1,16 @@
+/********
+*	Team: Herugrim
+*	Authors: David Johnston, Scott Barrett, Jack Storm
+*	Tester: Wangchuk Zigmyal
+*	Class: CSI-281-01
+*	Assignment: Apriori
+*	Date Assigned: Monday, November 11th, 2013
+*	Date Due: 17:00 EST, Friday, December 6, 2013
+*	Description: Implement the apriori algorithm using data structures 
+*				 learned in class
+*	Certification of Authenticy: We hearby certify that this assignment is our own work
+********/
+
 #include <string>
 #include <sstream>
 #include "dataset.h"
