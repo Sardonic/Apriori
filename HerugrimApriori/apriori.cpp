@@ -34,6 +34,18 @@ int main()
 
 	mainData.populateArray(fileName);
 
+	cout << "Checking 25% threshold..." << endl << endl;
+
+	timer.startClock();
+	mainData.generateAllItemsets(0.25);
+	time = timer.getTime();
+
+	cout << "Finished in " << time << " seconds.";
+
+	mainData.writeToFile(fileName + "-25threshold.txt");
+
+	
+
 	cout << "Checking 0.25% threshold..." << endl << endl;
 
 	timer.startClock();
@@ -44,8 +56,6 @@ int main()
 
 	mainData.writeToFile(fileName + "-0.25threshold.txt");
 
-	
-	mainData.populateArray(fileName);
 
 	
 	cout << "Checking 0.5% threshold..." << endl << endl;
@@ -59,7 +69,6 @@ int main()
 	mainData.writeToFile(fileName + "-0.5threshold.txt");
 
 	
-	mainData.populateArray(fileName);
 
 	cout << "Checking 1% threshold..." << endl << endl;
 
@@ -72,7 +81,6 @@ int main()
 	mainData.writeToFile(fileName + "-1threshold.txt");
 
 	
-	mainData.populateArray(fileName);
 
 	cout << "Checking 2.5% threshold..." << endl << endl;
 
@@ -85,7 +93,6 @@ int main()
 	mainData.writeToFile(fileName + "-2.5threshold.txt");
 
 	
-	mainData.populateArray(fileName);
 
 	cout << "Checking 10% threshold..." << endl << endl;
 
@@ -98,18 +105,6 @@ int main()
 	mainData.writeToFile(fileName + "-10threshold.txt");
 
 	
-	mainData.populateArray(fileName);
-
-	cout << "Checking 25% threshold..." << endl << endl;
-
-	timer.startClock();
-	mainData.generateAllItemsets(0.25);
-	time = timer.getTime();
-
-	cout << "Finished in " << time << " seconds.";
-
-	mainData.writeToFile(fileName + "-25threshold.txt");
-
 	cout << endl << "Press enter to continue..." << endl;
 	getline(cin, junk);
 
