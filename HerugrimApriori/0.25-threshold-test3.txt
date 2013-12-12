@@ -1,0 +1,5 @@
+Itemsets generated with 25% support threshold:
+There are no 1-itemsets
+Finished generating 1-itemSets in 0.0409339 seconds
+
+

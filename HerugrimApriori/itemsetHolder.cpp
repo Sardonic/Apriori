@@ -18,9 +18,9 @@ ItemsetHolder::~ItemsetHolder(){}
  *     Post:  We know if the left ItemsetHolder is of larger order
  *  Purpose:  To compare ItemsetHolders
  *****************************************************************************/
-bool operator>(ItemsetHolder& rhs, ItemsetHolder& lhs)
+bool operator>(ItemsetHolder& lhs, ItemsetHolder& rhs)
 {
-	if(rhs.getWhichItemset() > lhs.getWhichItemset())
+	if(lhs.getWhichItemset() > rhs.getWhichItemset())
 	{
 		return true;
 	}
@@ -34,9 +34,9 @@ bool operator>(ItemsetHolder& rhs, ItemsetHolder& lhs)
  *     Post:  We know if the left ItemsetHolder is of smaller order
  *  Purpose:  To compare ItemsetHolders
  *****************************************************************************/
-bool operator<(ItemsetHolder& rhs, ItemsetHolder& lhs)
+bool operator<(ItemsetHolder& lhs, ItemsetHolder& rhs)
 {
-	if(rhs.getWhichItemset() < lhs.getWhichItemset())
+	if(lhs.getWhichItemset() < rhs.getWhichItemset())
 	{
 		return true;
 	}
@@ -50,9 +50,9 @@ bool operator<(ItemsetHolder& rhs, ItemsetHolder& lhs)
  *     Post:  We know if the left itemset is of larger or equal order
  *  Purpose:  To compare ItemsetHolders
  *****************************************************************************/
-bool operator>=(ItemsetHolder& rhs, ItemsetHolder& lhs)
+bool operator>=(ItemsetHolder& lhs, ItemsetHolder& rhs)
 {
-	if(rhs.getWhichItemset() >= lhs.getWhichItemset())
+	if(lhs.getWhichItemset() >= rhs.getWhichItemset())
 	{
 		return true;
 	}
@@ -66,9 +66,9 @@ bool operator>=(ItemsetHolder& rhs, ItemsetHolder& lhs)
  *     Post:  We know if the left itemset is of smaller or equal order
  *  Purpose:  To compare ItemsetHolders
  *****************************************************************************/
-bool operator<=(ItemsetHolder& rhs, ItemsetHolder& lhs)
+bool operator<=(ItemsetHolder& lhs, ItemsetHolder& rhs)
 {
-	if(rhs.getWhichItemset() <= lhs.getWhichItemset())
+	if(lhs.getWhichItemset() <= rhs.getWhichItemset())
 	{
 		return true;
 	}

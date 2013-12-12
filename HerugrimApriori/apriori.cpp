@@ -87,12 +87,20 @@ int main()
 		outFile.close();
 	}
 
+	
+
 	string junk;
 	cout << endl << "Press enter to continue..." << endl;
 	getline(cin, junk);
 
+
+	
 	return 0;
 } 
+
+
+
+
 
 void ItemsetStub()
 {
